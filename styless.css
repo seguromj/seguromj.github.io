@@ -1,0 +1,159 @@
+
+
+body {
+  background-color: black;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+/* Container que simula a tela do app */
+.app-screen {
+    max-width: 600px;
+    margin: 0 auto; /* Centraliza no desktop */
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 1. CABEÇALHO COM IMAGEM DE FUNDO */
+.header-banner {
+    height: 150px;
+    /* Substitua com sua própria URL de imagem */
+    background: url('imagem-de-fundo.jpg') no-repeat center center/cover; 
+    position: relative;
+}
+
+/* 2. INFO BOX E LOGO */
+.restaurante-info-box {
+    text-align: center;
+    padding: 10px 20px;
+    background-color: white;
+    /* Move a caixa ligeiramente para cima para sobrepor o banner */
+    margin-top: -50px; 
+    border-radius: 20px 20px 0 0; 
+    position: relative; /* Garante que fique acima do header */
+}
+
+.logo-box {
+    margin-top: -40px; /* Levanta a logo para sobrepor o topo */
+    margin-bottom: 10px;
+}
+
+.restaurante-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.restaurante-info-box h2 {
+    margin: 0 0 5px 0;
+}
+
+.info-pedidos, .info-local {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.info-pedidos .green {
+    color: green;
+}
+
+.status {
+    display: inline-block;
+    background-color: #e6ffe6;
+    color: green;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* 3. PROMOÇÕES E BOTÕES */
+.promocoes, .lista-produtos {
+    padding: 10px 20px;
+}
+
+.banner-promocao {
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+
+.big-title {
+    background-color: #f0f0f0;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.red-banner {
+    border: 1px solid #f8d7da;
+    color: #721c24;
+    background-color: #f8d7da;
+}
+
+.botao-entrega {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.green-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+/* 4. LISTA DE PRODUTOS */
+.card-produto {
+    background-color: #F5F3F0;
+    width:370px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 5px solid #eee;
+    padding: 15px;
+    
+}
+
+.produto-detalhes {
+    flex-basis: 65%;
+}
+
+.produto-img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.produto-detalhes h4 {
+    margin: 0 0 5px 0;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.complementos {
+    font-size: 0.8em;
+    color: #777;
+    margin: 0 0 5px 0;
+}
+
+.preco-antigo {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 0.9em;
+    margin: 0;
+}
+
+.preco-atual {
+    color: #28a745;
+    font-weight: bold;
+    margin: 0;
+}
