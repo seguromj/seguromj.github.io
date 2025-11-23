@@ -118,13 +118,13 @@ body {
 /* 4. LISTA DE PRODUTOS */
 .card-produto {
     background-color: #F5F3F0;
-    width:350px;
+    width: 350px;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 5px solid #eee;
-    padding: 15px;
+    padding: 20px;
     
 }
 
