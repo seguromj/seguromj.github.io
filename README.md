@@ -13,5 +13,5 @@ As imagens e preços são mera ficção.
 ## 🚀 Acesso
 
 Você pode acessar o site publicado através do GitHub Pages neste link:
-https://mayckonmj.github.io/Mayckon/
+https://seguromj.github.io/Josair-/
 
