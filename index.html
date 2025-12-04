@@ -1,100 +1,335 @@
-
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drink Spook</title>
-    <link rel="stylesheet" href="styless.css">
-</head>
+    <title>✂️ Barbershop do Josair</title>
+    
+    <style>
+        /* Variáveis de Cores */
+        :root {
+            --cor-base: #000000; /* Preto */
+            --cor-destaque: #FF4500; /* Laranja Vivo */
+            --cor-texto: #FFFFFF; /* Branco */
+        }
+
+        /* Estilo Básico do Corpo */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cor-base);
+            color: var(--cor-texto);
+            line-height: 1.6;
+        }
+
+        /* Cabeçalho e Navegação */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--cor-destaque);
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--cor-destaque);
+            text-decoration: none;
+        }
+
+        nav a {
+            color: var(--cor-texto);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--cor-destaque);
+        }
+
+        /* Botão de Agendamento (CTA Principal) */
+        .btn-agenda {
+            background-color: var(--cor-destaque);
+            color: var(--cor-base);
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        .btn-agenda:hover {
+            background-color: #FF6347; /* Laranja um pouco mais claro */
+            transform: scale(1.05);
+        }
+
+        /* Estilo das Seções */
+        section {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            color: var(--cor-destaque);
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--cor-destaque);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* Seção Banner */
+        #home {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Placeholder para Imagem de Fundo (Substitua por sua imagem!) */
+            background: url('[attachment_0](attachment)') no-repeat center center/cover; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        #home h1 {
+            font-size: 4em;
+            margin-bottom: 10px;
+            color: var(--cor-texto);
+        }
+
+        #home p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        /* Galeria de Cortes */
+        .galeria-cortes {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .corte-modelo {
+            width: 300px;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--cor-destaque);
+            transition: transform 0.3s;
+        }
+
+        .corte-modelo:hover {
+            transform: translateY(-10px);
+        }
+
+        .corte-modelo img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            /* Placeholder para Imagem */
+            background-color: #222;
+        }
+
+        .corte-modelo h3 {
+            color: var(--cor-destaque);
+            padding: 15px 0;
+            margin: 0;
+        }
+
+        /* Formulário de Agendamento */
+        #agendamento form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 8px;
+            border: 2px solid var(--cor-destaque);
+        }
+
+        #agendamento label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--cor-texto);
+        }
+
+        #agendamento input, #agendamento select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #333;
+            background-color: #0d0d0d;
+            color: var(--cor-texto);
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: var(--cor-destaque);
+            color: var(--cor-base);
+            padding: 40px 5%;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        footer a {
+            color: var(--cor-base);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+    </style>
+    </head>
 <body>
 
-    <div class="app-screen">
-        <header class="header-banner">
-            </header>
+    <header>
+        <a href="#home" class="logo">✂️ BARBEARIA SOLOTOF</a>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#cortes">Cortes</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#agendamento">Agendar</a>
+        </nav>
+        <a href="#agendamento" class="btn-agenda">AGENDAR AGORA</a>
+    </header>
 
-        <section class="restaurante-info-box">
-            <div class="logo-box">
-                <img src="https://www.campinas.com.br/wp-content/uploads/2019/02/Drinques-coqueteis-geral.jpg" alt="Sabor de Casa Logo" class="restaurante-logo">
-            </div>
-            
-            <h2>Sabor de Casa</h2>
-            <p class="info-pedidos">
-                <span class="info-item">Pedido Mínimo R$ 10,00</span>
-                <span class="info-item">⏱️ 40-60 min</span>
-                <span class="info-item green">• Grátis</span>
-            </p>
-            <p class="info-local">
-                📍 Anápolis - GO • 1,6km de você •
-            </p>
-                <span class="rating">⭐️ 4,8 (136 avaliações)</span>
-            </p>
-            <span class="status aberto">ABERTO</span>
-        </section>
+    <section id="home">
+        <h1>O ESTILO COMEÇA AQUI</h1>
+        <p>A arte da navalha e da tesoura no seu mais alto nível.</p>
+        <button type="button" onclick="document.getElementById('agendamento').scrollIntoView();" class="btn-agenda" style="font-size: 1.2em;">MARQUE SEU CORTE</button>
+    </section>
 
-        <section class="promocoes">
-            <div class="banner-promocao big-title">Pague 1, Leve 2</div>
-            <button class="botao-entrega green-btn">Entrega Grátis para Goiânia!</button>
-            <div class="banner-promocao red-banner">
-                Aproveite nossa promoção com preços irresistíveis igual **Churrasco** 💜
+    <section id="cortes">
+        <h2>Tipos de Cortes & Modelos</h2>
+        <div class="galeria-cortes">
+            <div class="corte-modelo">
+                <img src="https://i.pinimg.com/736x/ae/cc/10/aecc10d8f0f487fd1aa68692e67bef61.jpg" alt="High Fade">
+                <h3>High Fade</h3>
             </div>
-        </section>
-
-        <main class="lista-produtos">
-            <div class="banner-promocao big-title">Pague 1, Leve 2</div>
-            
-            <div class="card-produto">
-                <div class="produto-detalhes big-title">
-                    <h4>Drink Azul</h4>
-                    <p class="complementos">9 Complementos Grátis</p>
-                    <p class="preco-antigo">de R$ 39,80</p>
-                    <p class="preco-atual">Por R$ 20,93</p>
-                </div>
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7TWAqMEI7hDlH5UEySh7S7KSzhZc_6WBXa9SG1QPeuZaOrupM9DL4oZbXz5uuybhVhvZRVbJfChuj85IWO65ueqh_7f3HFc14KMa-yPYwNDp-Z4O1gmazE6JEHZA09BhcUBLA08FqYVT8A0_YH6FvgPIdQbh-CDeLiE_IGHh6brR3LDP_Q36nSlZN/s2000/drink-lagoa-azul.jpg" alt="Marmitex Pequena" class="produto-img">
+            <div class="corte-modelo">
+                <img src="https://www.elhombre.com.br/wp-content/uploads/2023/03/Pompadour-fade-600x633.jpeg" alt="Pompadour">
+                <h3>Pompadour Clássico</h3>
             </div>
-
-            <div class="card-produto">
-                <div class="produto-detalhes">
-                    <h4>Barman?</h4>
-                    <p class="complementos">9 Complementos Grátis</p>
-                    <p class="preco-antigo">de R$ 43,80</p>
-                    <p class="preco-atual">Por R$ 28,77</p>
-                </div>
-                <img src="img/IMG_20251122_215556.jpg" alt="Marmitex Grande" class="produto-img">
+            <div class="corte-modelo">
+                <img src="https://comoterbarba.com/wp-content/uploads/2023/10/barba-lenhador-classica.webp" alt="Barba Lenhador">
+                <h3>Barba Lenhador</h3>
             </div>
-          
-          
-            <div class="card-produto">
-                <div class="produto-detalhes big-title">
-                    <h4>Pague com cartões</h4>
-                    <p class="complementos">9 Complementos Grátis</p>
-                    <p class="preco-antigo">de R$ 43,80</p>
-                    <p class="preco-atual">Por R$ 28,77</p>
-                </div>
-                <img src="img/br-11134207-7r98o-lwhl3jm9mxrq61.jpeg" alt="Marmitex Grande" class="produto-img">
-            </div>
-          
-          
-            <div class="card-produto">
-                <div class="produto-detalhes">
-                    <h4>2 Marmitex Grande Com Churrasco</h4>
-                    <p class="complementos">9 Complementos Grátis</p>
-                    <p class="preco-antigo">de R$ 43,80</p>
-                    <p class="preco-atual">Por R$ 28,77</p>
-                </div>
-                <img src="img/whatsapp_logo_icon_186881.png" alt="Marmitex Grande" class="produto-img">
-            </div>
-          
-          
-          
-          
-        </main>
-  
-    </div>
+        </div>
+        <br>
+        <a href="#agendamento" class="btn-agenda">Escolha seu Estilo</a>
+    </section>
     
-</body>
+    <hr>
+
+    <section id="servicos">
+        <h2>Nossos Serviços</h2>
+        <p style="max-width: 600px; margin: 0 auto 30px;">Do corte tradicional à barba desenhada, garantimos a excelência em cada detalhe.</p>
+        <ul style="list-style: none; padding: 0; max-width: 500px; margin: 0 auto; text-align: left;">
+            <li style="border-bottom: 1px dashed #333; padding: 10px 0;">✂️ Corte Masculino Moderno <span style="float: right; color: var(--cor-destaque);">R$ 45</span></li>
+            <li style="border-bottom: 1px dashed #333; padding: 10px 0;">🧔🏻 Barba Desenhada à Navalha <span style="float: right; color: var(--cor-destaque);">R$ 35</span></li>
+            <li style="border-bottom: 1px dashed #333; padding: 10px 0;">✨ Combo (Corte + Barba) <span style="float: right; color: var(--cor-destaque);">R$ 70</span></li>
+            <li style="padding: 10px 0;">🧖🏻‍♂️ Tratamento Capilar Premium <span style="float: right; color: var(--cor-destaque);">R$ 25</span></li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section id="agendamento">
+        <h2>Agende seu Horário</h2>
+        <form id="formAgendamento">
+            
+            <label for="servico">Serviço Desejado:</label>
+            <select id="servico" name="servico" required>
+                <option value="">Selecione um Serviço</option>
+                <option value="Corte Masculino">Corte Masculino Moderno</option>
+                <option value="Barba">Barba Desenhada à Navalha</option>
+                <option value="Combo">Combo (Corte + Barba)</option>
+            </select>
+            
+            <label for="barbeiro">Barbeiro Preferido:</label>
+            <select id="barbeiro" name="barbeiro">
+                <option value="Indiferente">Qualquer Barbeiro</option>
+                <option value="Joao (Especialista em Fade)">Josair</option>
+                <option value="Pedro (Mestre da Navalha)">Mayckon</option>
+            </select>
+            
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data" required>
+
+            <label for="hora">Hora:</label>
+            <input type="time" id="hora" name="hora" required>
+            
+            <label for="nome">Seu Nome:</label>
+            <input type="text" id="nome" name="nome" required placeholder="Ex: Lucas Silva">
+
+            <button type="button" class="btn-agenda" id="agendamentoButton" onclick="gerarLinkWhatsApp()" style="width: 100%; font-size: 1.2em;">
+                ENVIAR MENSAGEM DE AGENDAMENTO VIA WHATSAPP
+            </button>
+            <p style="font-size: 0.8em; margin-top: 15px; color: #aaa;">Seu pedido será enviado para nosso WhatsApp. Aguarde a confirmação!</p>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Barbershop. Todos os direitos reservados. | Design Preto & Laranja.</p>
+        <p>
+            <a href="#">Instagram</a> |
+            <a href="#">WhatsApp</a> |
+            <a href="#">Localização</a>
+        </p>
+    </footer>
+
+    <script>
+        function gerarLinkWhatsApp() {
+            // ****** SUBSTITUA AQUI PELO SEU NÚMERO DE TELEFONE (DDI+DDD+NÚMERO, SEM SÍMBOLOS) ******
+            const telefoneBarbearia = "5562995679219"; 
+
+            // Coletar os dados preenchidos pelo cliente
+            const servico = document.getElementById('servico').value;
+            const barbeiro = document.getElementById('barbeiro').value;
+            const data = document.getElementById('data').value;
+            const hora = document.getElementById('hora').value;
+            const nomeCliente = document.getElementById('nome').value;
+
+            // Validação
+            if (!servico || !data || !hora || !nomeCliente) {
+                alert("Por favor, preencha todos os campos obrigatórios (Serviço, Data, Hora e Nome) para agendar.");
+                return;
+            }
+
+            // Criar a mensagem estruturada
+            const mensagemBase = 
+                `Olá! Gostaria de agendar um horário.` + 
+                `\n\n*Detalhes do Agendamento:*` +
+                `\n👤 *Nome:* ${nomeCliente}` +
+                `\n✂️ *Serviço:* ${servico}` +
+                `\n👨‍🦱 *Barbeiro:* ${barbeiro}` +
+                `\n📅 *Data:* ${data}` +
+                `\n⏰ *Hora:* ${hora}` +
+                `\n\nPor favor, confirme a disponibilidade.`;
+
+            // Codificar a mensagem para URL
+            const mensagemCodificada = encodeURIComponent(mensagemBase);
+
+            // Construir o Link Final
+            const linkWhatsApp = `https://wa.me/${telefoneBarbearia}?text=${mensagemCodificada}`;
+
+            // Abrir o link em uma nova janela
+            window.open(linkWhatsApp, '_blank');
+            
+            // Opcional: Limpar o formulário (descomente se quiser)
+            // document.getElementById('formAgendamento').reset();
+        }
+    </script>
+    </body>
 </html>
-
-
-
