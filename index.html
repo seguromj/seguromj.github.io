@@ -3,388 +3,627 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barbershop do Josair</title>
+    <title>✂️ LS BARBEARIA - High Level Grooming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* Variáveis de Cores */
+        /* Variáveis de Cores (Azul Marinho e Prata/Branco) */
         :root {
-            --cor-base: #000000; /* Preto */
-            --cor-destaque: #FF4500; /* Laranja Vivo */
-            --cor-texto: #FFFFFF; /* Branco */
+            --cor-base: #1A3654; /* Azul Marinho Escuro */
+            --cor-fundo-secundaria: #0D2138; /* Azul Quase Preto */
+            --cor-destaque: #CCCCCC; /* Prata/Branco Suave */
+            --cor-texto: #FFFFFF; /* Branco Puro */
+            --cor-acento-luxo: #C0C0C0; /* Prata para detalhes */
+            --transicao-rapida: 0.5s ease-out;
+            --transicao-lenta: 1s ease-out;
         }
 
-        /* Estilo Básico do Corpo */
+        /* Estilo Básico */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--cor-base);
             color: var(--cor-texto);
             line-height: 1.6;
+            overflow-x: hidden; /* Evita barra de rolagem horizontal por causa de animações */
         }
 
-        /* Cabeçalho e Navegação */
+        /* -------------------------------------- */
+        /* ESTRUTURA E ANIMAÇÕES GERAIS */
+        /* -------------------------------------- */
+
+        /* Efeito de Fundo Fixo (Simulação de Parallax) */
+        .parallax-background {
+            background: url('') no-repeat center center/cover;
+            background-attachment: fixed;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.1; /* Sutilmente visível */
+        }
+
+        /* Estilo das Seções */
+        section {
+            padding: 100px 5%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Títulos de Alto Nível */
+        section h2 {
+            font-size: 3.5em; 
+            font-weight: 900;
+            color: var(--cor-destaque);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            /* Sublinhado sutil e elegante */
+            border-bottom: 2px solid var(--cor-acento-luxo);
+            display: inline-block;
+            padding-bottom: 5px;
+            opacity: 0; /* Início da animação */
+            transform: translateY(20px);
+            transition: opacity var(--transicao-lenta), transform var(--transicao-lenta);
+        }
+        
+        /* Classe para acionar animação ao ser visível */
+        .animated.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Estilo para Parágrafos de introdução */
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-size: 1.2em;
+            color: var(--cor-acento-luxo);
+            font-weight: 300;
+            opacity: 0; 
+            transform: translateY(20px);
+            transition: opacity var(--transicao-lenta) 0.3s, transform var(--transicao-lenta) 0.3s;
+        }
+        
+        /* -------------------------------------- */
+        /* CABEÇALHO (Header Fixo e Transparente) */
+        /* -------------------------------------- */
         header {
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 15px 5%;
+            background-color: rgba(13, 33, 56, 0.95); /* Semi-transparente para ver o fundo */
+            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid var(--cor-destaque);
+            border-bottom: 1px solid rgba(204, 204, 204, 0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         }
 
         .logo {
-            font-size: 1.8em;
-            font-weight: bold;
+            font-size: 1.8em; 
+            font-weight: 900; 
             color: var(--cor-destaque);
             text-decoration: none;
-            align-text: center;
+            letter-spacing: 3px;
+            transition: color 0.3s;
+        }
+        .logo:hover { color: var(--cor-acento-luxo); }
+        
+        .subtitulo-header {
+            font-size: 0.5em;
+            color: #ccc;
+            display: block;
+            font-weight: 400;
+            letter-spacing: 1px;
         }
 
         nav a {
             color: var(--cor-texto);
             text-decoration: none;
             margin: 0 15px;
-            font-size: 1em;
-            transition: color 0.3s;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            transition: color 0.3s, border-bottom 0.3s;
+            padding-bottom: 5px;
+            font-weight: 600;
         }
 
         nav a:hover {
-            color: var(--cor-destaque);
+            color: var(--cor-acento-luxo);
+            border-bottom: 2px solid var(--cor-acento-luxo);
         }
 
-        /* Botão de Agendamento (CTA Principal) */
         .btn-agenda {
-            background-color: var(--cor-destaque);
+            background-color: var(--cor-acento-luxo);
             color: var(--cor-base);
             padding: 10px 20px;
+            border: none;
             text-decoration: none;
             font-weight: bold;
-            border: none;
             border-radius: 5px;
+            text-transform: uppercase;
             transition: background-color 0.3s, transform 0.1s;
         }
 
         .btn-agenda:hover {
-            background-color: #FF6347; /* Laranja um pouco mais claro */
+            background-color: var(--cor-destaque);
             transform: scale(1.05);
         }
 
-        /* Estilo das Seções */
-        section {
-            padding: 80px 5%;
-            text-align: center;
-        }
-
-        section h2 {
-            font-size: 2.5em;
-            color: var(--cor-destaque);
-            margin-bottom: 40px;
-            border-bottom: 3px solid var(--cor-destaque);
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        /* Seção Banner */
+        /* -------------------------------------- */
+        /* SEÇÃO HOME (Hero Animado) */
+        /* -------------------------------------- */
         #home {
-            min-height: 70vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* Placeholder para Imagem de Fundo (Substitua por sua imagem!) */
-            background: url('[attachment_0](attachment)') no-repeat center center/cover; 
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            background-color: transparent; /* Permite ver o fundo parallax */
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
         }
 
         #home h1 {
-            font-size: 4em;
+            font-size: 6em; 
+            font-weight: 100; /* Fonte mais fina para luxo */
             margin-bottom: 10px;
             color: var(--cor-texto);
+            animation: fadeInDown var(--transicao-lenta) both;
+            letter-spacing: 10px;
+            text-transform: uppercase;
         }
 
-        #home p {
-            font-size: 1.5em;
-            margin-bottom: 30px;
-            color: #ccc;
+        #home .subtitulo {
+            font-size: 2em;
+            color: var(--cor-destaque);
+            margin-bottom: 50px;
+            font-weight: 400;
+            animation: fadeIn var(--transicao-lenta) 0.5s both;
         }
 
-        /* Galeria de Cortes */
-        .galeria-cortes {
+        /* Keyframes de Animação */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* -------------------------------------- */
+        /* SERVIÇOS (Layout de Cartões Animados) */
+        /* -------------------------------------- */
+        .grid-servicos {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
         }
 
-        .corte-modelo {
+        .card-servico {
             width: 300px;
-            background-color: #1a1a1a;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--cor-destaque);
-            transition: transform 0.3s;
-        }
-
-        .corte-modelo:hover {
-            transform: translateY(-10px);
-        }
-
-        .corte-modelo img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            /* Placeholder para Imagem */
-            background-color: #222;
-        }
-
-        .corte-modelo h3 {
-            color: var(--cor-destaque);
-            padding: 15px 0;
-            margin: 0;
-        }
-
-        /* Formulário de Agendamento */
-        #agendamento form {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: left;
-            background-color: #1a1a1a;
+            background-color: var(--cor-fundo-secundaria);
+            border: 1px solid var(--cor-acento-luxo);
             padding: 30px;
-            border-radius: 8px;
-            border: 2px solid var(--cor-destaque);
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .card-servico:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        }
+        
+        .card-servico.animated.visible {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .card-servico h3 {
+            color: var(--cor-destaque);
+            font-size: 1.5em;
+            border-bottom: 1px dashed var(--cor-acento-luxo);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .card-servico .preco {
+            float: right;
+            color: var(--cor-acento-luxo);
+            font-weight: 700;
+        }
+        
+        /* -------------------------------------- */
+        /* AGENDAMENTO (Fundo Diferente e Sutil) */
+        /* -------------------------------------- */
+        #agendamento {
+            background-color: rgba(26, 54, 84, 0.95);
+            padding: 80px 5%;
+        }
+        
+        #agendamento form {
+            max-width: 550px;
+            margin: 0 auto;
+            background-color: var(--cor-fundo-secundaria);
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid var(--cor-acento-luxo);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
         }
 
         #agendamento label {
             display: block;
             margin-bottom: 8px;
-            font-weight: bold;
-            color: var(--cor-texto);
+            font-weight: 600;
+            color: var(--cor-destaque);
         }
 
         #agendamento input, #agendamento select {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #333;
-            background-color: #0d0d0d;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #456d9c;
+            background-color: var(--cor-base);
             color: var(--cor-texto);
             border-radius: 4px;
             box-sizing: border-box;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        #agendamento input:focus, #agendamento select:focus {
+            border-color: var(--cor-acento-luxo);
+            box-shadow: 0 0 5px var(--cor-acento-luxo);
+            outline: none;
+        }
+        
+        /* O campo de cupom é discreto, como solicitado */
+        #cupom {
+            margin-top: -10px; 
+            margin-bottom: 30px; 
+            font-style: italic;
+            background-color: #102d4d !important; /* Cor mais sutil */
         }
 
-        /* Rodapé */
+
+        /* -------------------------------------- */
+        /* AVALIAÇÕES (NOVO ESTILO MODERNO) */
+        /* -------------------------------------- */
+        #reviews {
+            background-color: var(--cor-base);
+        }
+        
+        .review-slider {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            overflow-x: auto; /* Permite rolagem horizontal em telas pequenas */
+            padding-bottom: 20px;
+        }
+
+        .review-card {
+            min-width: 300px; /* Largura mínima para o card */
+            background-color: var(--cor-fundo-secundaria);
+            padding: 20px;
+            border-left: 5px solid var(--cor-destaque);
+            border-radius: 5px;
+            text-align: left;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 1s, transform 1s;
+        }
+        
+        .review-card.animated.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .review-card p {
+            font-style: italic;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .review-card strong {
+            display: block;
+            margin-top: 10px;
+            color: var(--cor-destaque);
+        }
+        
+        .stars {
+            color: gold;
+            margin-bottom: 10px;
+        }
+
+        /* -------------------------------------- */
+        /* Rodapé de Luxo */
+        /* -------------------------------------- */
         footer {
-            background-color: var(--cor-destaque);
-            color: var(--cor-base);
-            padding: 40px 5%;
+            background-color: var(--cor-fundo-secundaria);
+            color: var(--cor-destaque);
+            padding: 50px 5%;
             text-align: center;
-            font-weight: bold;
+            border-top: 1px solid rgba(204, 204, 204, 0.2);
+            font-size: 0.9em;
+        }
+        
+        footer a {
+            color: var(--cor-acento-luxo);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: var(--cor-texto);
         }
 
-        footer a {
-            color: var(--cor-base);
-            text-decoration: none;
+        /* Credenciais */
+        .footer-credits {
+            margin-top: 20px;
+            color: #8899aa;
+        }
+
+        /* Botão para outros sites (mantido) */
+        .rotating-globe-button {
+            background: var(--cor-base);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .globe-icon {
+            transform-origin: center; 
+            animation: spin 3s linear infinite; 
+            color: var(--cor-destaque);
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .criar-site {
+            color: var(--cor-destaque);
+            font-size: 12px;
+            text-align: center;
             margin: 0 10px;
         }
 
 
+        /* -------------------------------------- */
+        /* RESPONSIVIDADE (MOBILE) */
+        /* -------------------------------------- */
+        @media (max-width: 768px) {
+            
+            section { padding: 60px 3%; }
+            
+            header { flex-wrap: wrap; justify-content: center; }
+            nav { width: 100%; margin-top: 10px; display: flex; justify-content: space-around; }
+            nav a { margin: 5px 0; font-size: 0.9em; }
+            .btn-agenda { margin-top: 10px; width: 100%; }
+            .logo { font-size: 1.5em; text-align: center; width: 100%; margin-bottom: 5px; }
 
-    
-    /* Estilização básica do botão */
-.rotating-globe-button {
-    background: black;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 24px; /* Define o tamanho do botão (e do ícone) */
-    padding: 5px;
-    display: inline-flex; /* Permite centralizar o ícone */
-    align-items: center;
-    justify-content: center;
-}
+            #home h1 { font-size: 3em; letter-spacing: 5px; }
+            #home .subtitulo { font-size: 1.5em; }
+            section h2 { font-size: 2em; letter-spacing: 3px; }
+            .intro-text { font-size: 1em; }
 
-/* Aplica a animação no ícone */
-.globe-icon {
-    /* Define o ponto de rotação no centro (padrão, mas bom ter) */
-    transform-origin: center; 
-    
-    /* Aplica a animação */
-    animation: spin 3s linear infinite; 
-}
-
-/* Define a animação de giro (keyframes) */
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-    .criar-site {
-        color: white;
-        font-size: 12px;
-        text-align: center;
-    }
-
-
-        
+            .grid-servicos {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card-servico {
+                width: 100%; 
+                max-width: 350px;
+            }
+            
+            #agendamento form { padding: 30px 20px; }
+            
+            .review-slider {
+                justify-content: flex-start; /* Alinha à esquerda e força a rolagem */
+            }
+        }
 
     </style>
     </head>
 <body>
+    
+    <div class="parallax-background"></div>
 
     <header>
-        <a href="https://maps.app.goo.gl/UVFw4ZULLXSuaPEJA" class="logo">JS <br>BARBEARIA <br>Jhow Alves</a>
+        <a href="#home" class="logo">LS BARBEARIA <span class="subtitulo-header">Since 2025</span></a>
         <nav>
             <a href="#home">Home</a>
-            <a href="#cortes">Cortes</a>
             <a href="#servicos">Serviços</a>
+            <a href="#reviews">Avaliações</a>
             <a href="#agendamento">Agendar</a>
         </nav>
-        <a href="#agendamento" class="btn-agenda">AGENDAR AGORA</a>
+        <a href="#agendamento" class="btn-agenda">AGENDAMENTO VIP</a>
     </header>
 
     <section id="home">
-        <h1>O ESTILO COMEÇA AQUI</h1>
-        <p>A arte da navalha e da tesoura no seu mais alto nível.</p>
-        <button type="button" onclick="document.getElementById('agendamento').scrollIntoView();" class="btn-agenda" style="font-size: 1.2em;">MARQUE SEU CORTE</button>
+        <h1>THE HIGH LEVEL</h1>
+        <p class="subtitulo">A Arte da Navalha com Atendimento Exclusivo em Domicílio</p>
+        <a href="#agendamento" class="btn-agenda" style="font-size: 1.3em;">RESERVE SEU HORÁRIO</a>
     </section>
-
-    <section id="cortes">
-        <h2>Tipos de Cortes & Modelos</h2>
-        <div class="galeria-cortes">
-            <div class="corte-modelo">
-                <img src="https://i.pinimg.com/736x/ae/cc/10/aecc10d8f0f487fd1aa68692e67bef61.jpg" alt="High Fade">
-                <h3>High Fade</h3>
-            </div>
-            <div class="corte-modelo">
-                <img src="https://www.elhombre.com.br/wp-content/uploads/2023/03/Pompadour-fade-600x633.jpeg" alt="Pompadour">
-                <h3>Pompadour Clássico</h3>
-            </div>
-            <div class="corte-modelo">
-                <img src="https://comoterbarba.com/wp-content/uploads/2023/10/barba-lenhador-classica.webp" alt="Barba Lenhador">
-                <h3>Barba Lenhador</h3>
-            </div>
-        </div>
-        <br>
-        <a href="#agendamento" class="btn-agenda">Escolha seu Estilo</a>
-    </section>
-    
-    <hr>
 
     <section id="servicos">
-        <h2>Nossos Serviços</h2>
-        <p style="max-width: 600px; margin: 0 auto 30px;">Do corte tradicional à barba desenhada, garantimos a excelência em cada detalhe.</p>
-        <ul style="list-style: none; padding: 0; max-width: 500px; margin: 0 auto; text-align: left;">
-            <li style="border-bottom: 1px dashed #333; padding: 10px 0;">✂️ Corte Masculino Moderno <span style="float: right; color: var(--cor-destaque);">R$ 45</span></li>
-            <li style="border-bottom: 1px dashed #333; padding: 10px 0;">🧔🏻 Barba Desenhada à Navalha <span style="float: right; color: var(--cor-destaque);">R$ 35</span></li>
-            <li style="border-bottom: 1px dashed #333; padding: 10px 0;">✨ Combo (Corte + Barba) <span style="float: right; color: var(--cor-destaque);">R$ 70</span></li>
-            <li style="padding: 10px 0;">🧖🏻‍♂️ Tratamento Capilar Premium <span style="float: right; color: var(--cor-destaque);">R$ 25</span></li>
-        </ul>
+        <h2 class="animated">Serviços Exclusivos</h2>
+        <p class="intro-text animated">Especialistas em cortes modernos, técnicas de Fade e tratamento de barba de alto padrão.</p>
+        
+        <div class="grid-servicos">
+            <div class="card-servico animated" style="transition-delay: 0s;">
+                <h3>Corte Signature <span class="preco">R$ 55</span></h3>
+                <p>Corte personalizado com análise de formato de rosto e textura do cabelo, finalizado com produtos premium.</p>
+            </div>
+            <div class="card-servico animated" style="transition-delay: 0.15s;">
+                <h3>Barba Terapêutica <span class="preco">R$ 45</span></h3>
+                <p>Barba desenhada à navalha, com toalhas quentes, óleos essenciais e massagem facial relaxante.</p>
+            </div>
+            <div class="card-servico animated" style="transition-delay: 0.3s;">
+                <h3>Combo Supreme <span class="preco">R$ 90</span></h3>
+                <p>O pacote completo. Corte + Barba Terapêutica. O tratamento de luxo que você merece, no conforto da sua casa.</p>
+            </div>
+            <div class="card-servico animated" style="transition-delay: 0.45s;">
+                <h3>Tratamento Capilar <span class="preco">R$ 30</span></h3>
+                <p>Rejuvenescimento capilar e couro cabeludo, com esfoliação e hidratação profunda.</p>
+            </div>
+        </div>
     </section>
-
-    <hr>
-
+    
     <section id="agendamento">
-        <h2>Agende seu Horário</h2>
+        <h2 class="animated">Reserve sua Experiência</h2>
+        <p class="intro-text animated">Garanta a sua agenda. Atendimento em domicílio (Anápolis e região). Preencha o formulário e envie o pedido.</p>
+        
         <form id="formAgendamento">
             
             <label for="servico">Serviço Desejado:</label>
             <select id="servico" name="servico" required>
-                <option value="">Selecione um Serviço</option>
-                <option value="Corte Masculino">Corte Masculino Moderno</option>
-                <option value="Barba">Barba Desenhada à Navalha</option>
-                <option value="Combo">Combo (Corte + Barba)</option>
+                <option value="">Selecione a Experiência</option>
+                <option value="Corte Signature">Corte Signature (R$ 55)</option>
+                <option value="Barba Terapeutica">Barba Terapêutica (R$ 45)</option>
+                <option value="Combo Supreme">Combo Supreme (R$ 90)</option>
+                <option value="Tratamento Capilar">Tratamento Capilar (R$ 30)</option>
             </select>
             
-            <label for="barbeiro">Barbeiro Preferido:</label>
-            <select id="barbeiro" name="barbeiro">
-                <option value="Indiferente">Qualquer Barbeiro</option>
-                <option value="Josair">Josair</option>
-                <option value="Mayckon">Mayckon</option>
-            </select>
+            <label for="cupom" style="font-style: italic; font-size: 0.9em; margin-top: 15px;">Possui código de Desconto?</label>
+            <input type="text" id="cupom" name="cupom" placeholder="Insira o código promocional" style="margin-bottom: 35px;">
             
-            <label for="data">Data:</label>
+            <label for="data">Data Desejada:</label>
             <input type="date" id="data" name="data" required>
 
-            <label for="hora">Hora:</label>
+            <label for="hora">Horário:</label>
             <input type="time" id="hora" name="hora" required>
             
-            <label for="nome">Seu Nome:</label>
-            <input type="text" id="nome" name="nome" required placeholder="Ex: Lucas Silva">
+            <label for="nome">Seu Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required placeholder="Ex: Rodrigo Silva">
+            
+            <label for="endereco">Endereço de Atendimento:</label>
+            <input type="text" id="endereco" name="endereco" required placeholder="Rua, Nº, Bairro/Condomínio">
 
-            <button type="button" class="btn-agenda" id="agendamentoButton" onclick="gerarLinkWhatsApp()" style="width: 100%; font-size: 1.2em;">
-                ENVIAR MENSAGEM DE AGENDAMENTO VIA WHATSAPP
+            <button type="button" class="btn-agenda" id="agendamentoButton" onclick="gerarLinkWhatsApp()" style="width: 100%; font-size: 1.2em; background-color: var(--cor-destaque); color: var(--cor-base);">
+                CONFIRMAR RESERVA VIA WHATSAPP
             </button>
-            <p style="font-size: 0.8em; margin-top: 15px; color: #aaa;">Seu pedido será enviado para nosso WhatsApp. Aguarde a confirmação!</p>
+            <p style="font-size: 0.8em; margin-top: 15px; color: var(--cor-acento-luxo); text-align: center;">O agendamento será confirmado pelo Barbeiro Jhow Alves.</p>
         </form>
+    </section>
+    
+    <section id="reviews">
+        <h2 class="animated">O que dizem nossos clientes VIP</h2>
+        <p class="intro-text animated">A sua satisfação é a nossa prioridade. Excelência e profissionalismo comprovados.</p>
+
+        <div class="review-slider">
+            <div class="review-card animated" style="transition-delay: 0s;">
+                <div class="stars">★★★★★</div>
+                <p>"O Jhow é o melhor da região! O atendimento em casa é perfeito e o corte tem um acabamento impecável."</p>
+                <strong>— Lucas M.</strong>
+            </div>
+            <div class="review-card animated" style="transition-delay: 0.2s;">
+                <div class="stars">★★★★★</div>
+                <p>"Pedi o Combo Supreme e valeu cada centavo. A barba terapêutica é sensacional. Serviço de alto nível!"</p>
+                <strong>— Fernando A.</strong>
+            </div>
+            <div class="review-card animated" style="transition-delay: 0.4s;">
+                <div class="stars">★★★★★</div>
+                <p>"Profissionalismo e pontualidade. O corte durou muito mais tempo perfeito. Minha barbearia de luxo preferida."</p>
+                <strong>— Guilherme S.</strong>
+            </div>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 Barbearia Josair. Todos os direitos reservados. <br></p>
         <p>
+            <a href="https://wa.me/5562993039333?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20um%20servi%C3%A7o.">WhatsApp</a> |
             <a href="#">Instagram</a> |
-            <a href="#">WhatsApp</a> |
-            <a href="#">Localização</a>
+            <a href="#">Portfólio</a> |
+            <a href="#">Política de Privacidade</a>
         </p>
-        <br>
-    
-        <button class="rotating-globe-button">
-    <span class="globe-icon">🌐</span>
-            <a href="https://wa.me/5562995679219?text=Ol%C3%A1!%0AEstou%20querendo%20saber%20como%20funciona%20para%20criar%20meu%20site">
-            <span class="criar-site">Criar meu site</span>
-            </a>
-    <span class="globe-icon">🌐</span>
-        </button>
-        
+        <p class="footer-credits">&copy; 2025 LS BARBEARIA | Jhow Alves. Todos os direitos reservados.</p>
+        <div class="footer-credits">
+             <button class="rotating-globe-button">
+                <span class="globe-icon">🌐</span>
+                <a href="https://wa.me/5562995679219?text=Ol%C3%A1!%0AEstou%20querendo%20saber%20como%20funciona%20para%20criar%20meu%20site">
+                    <span class="criar-site">Criação de Sites Profissionais</span>
+                </a>
+                <span class="globe-icon">🌐</span>
+            </button>
+        </div>
     </footer>
 
     <script>
+        // Função JS para verificar se um elemento está visível na tela e aplicar a classe 'visible'
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animated');
+            const windowHeight = window.innerHeight;
+
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.top;
+
+                // Se o elemento estiver dentro da viewport (visível)
+                if (elementTop < windowHeight - 100) { 
+                    element.classList.add('visible');
+                } else {
+                    // Opcional: remover a classe quando rolar para fora (para re-animar)
+                    // element.classList.remove('visible');
+                }
+            });
+        };
+
+        // Adiciona o evento de scroll
+        window.addEventListener('scroll', animateOnScroll);
+        // Chama uma vez para animar elementos visíveis ao carregar
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
+        
+        // Função de Agendamento (Adaptada com o novo número)
         function gerarLinkWhatsApp() {
-            // ****** SUBSTITUA AQUI PELO SEU NÚMERO DE TELEFONE (DDI+DDD+NÚMERO, SEM SÍMBOLOS) ******
             const telefoneBarbearia = "5562993039333"; 
 
-            // Coletar os dados preenchidos pelo cliente
             const servico = document.getElementById('servico').value;
-            const barbeiro = document.getElementById('barbeiro').value;
+            const cupom = document.getElementById('cupom').value;
             const data = document.getElementById('data').value;
             const hora = document.getElementById('hora').value;
             const nomeCliente = document.getElementById('nome').value;
+            const endereco = document.getElementById('endereco').value;
 
-            // Validação
-            if (!servico || !data || !hora || !nomeCliente) {
-                alert("Por favor, preencha todos os campos obrigatórios (Serviço, Data, Hora e Nome) para agendar.");
+            if (!servico || !data || !hora || !nomeCliente || !endereco) {
+                alert("Por favor, preencha todos os campos obrigatórios para agendar.");
                 return;
             }
 
-            // Criar a mensagem estruturada
+            const cupomTexto = cupom ? `\n🏷️ *Cupom/Promoção:* ${cupom}` : 'JHOW23';
+
             const mensagemBase = 
-                `Olá! Gostaria de agendar um horário.` + 
-                `\n\n*Detalhes do Agendamento:*` +
+                `Olá Jhow Alves! Gostaria de fazer uma RESERVA VIP em domicílio.` + 
+                `\n\n*Detalhes da Reserva:*` +
                 `\n👤 *Nome:* ${nomeCliente}` +
-                `\n✂️ *Serviço:* ${servico}` +
-                `\n👨‍🦱 *Barbeiro:* ${barbeiro}` +
+                `\n✨ *Serviço:* ${servico}` +
+                `\n🏠 *Endereço:* ${endereco}` +
                 `\n📅 *Data:* ${data}` +
                 `\n⏰ *Hora:* ${hora}` +
-                `\n\nPor favor, confirme a disponibilidade.`;
+                cupomTexto +
+                `\n\nSolicito a confirmação do horário e valor.`;
 
-            // Codificar a mensagem para URL
             const mensagemCodificada = encodeURIComponent(mensagemBase);
-
-            // Construir o Link Final
             const linkWhatsApp = `https://wa.me/${telefoneBarbearia}?text=${mensagemCodificada}`;
 
-            // Abrir o link em uma nova janela
             window.open(linkWhatsApp, '_blank');
-            
-            // Opcional: Limpar o formulário (descomente se quiser)
-            // document.getElementById('formAgendamento').reset();
         }
     </script>
-    </body>
+</body>
 </html>
